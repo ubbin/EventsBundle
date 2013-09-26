@@ -5,12 +5,12 @@ namespace Ubbin\EventsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * City
+ * Artist
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Ubbin\EventsBundle\Entity\CityRepository")
+ * @ORM\Entity(repositoryClass="Ubbin\EventsBundle\Entity\ArtistRepository")
  */
-class City
+class Artist
 {
     /**
      * @var integer
@@ -31,9 +31,24 @@ class City
     /**
      * @var string
      *
+     * @ORM\Column(name="image_url", type="string", length=255, nullable=true)
+     */
+    private $imageUrl;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="slug", type="string", length=255, nullable=true)
      */
     private $slug;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
 
     /**
      * Get id
@@ -49,7 +64,7 @@ class City
      * Set name
      *
      * @param string $name
-     * @return City
+     * @return Artist
      */
     public function setName($name)
     {
@@ -69,10 +84,33 @@ class City
     }
 
     /**
+     * Set imageUrl
+     *
+     * @param string $imageUrl
+     * @return Artist
+     */
+    public function setImageUrl($imageUrl)
+    {
+        $this->imageUrl = $imageUrl;
+    
+        return $this;
+    }
+
+    /**
+     * Get imageUrl
+     *
+     * @return string 
+     */
+    public function getImageUrl()
+    {
+        return $this->imageUrl;
+    }
+
+    /**
      * Set slug
      *
      * @param string $slug
-     * @return City
+     * @return Artist
      */
     public function setSlug($slug)
     {
@@ -92,71 +130,25 @@ class City
     }
 
     /**
-     * Set address
+     * Set description
      *
-     * @param string $address
-     * @return City
+     * @param string $description
+     * @return Artist
      */
-    public function setAddress($address)
+    public function setDescription($description)
     {
-        $this->address = $address;
+        $this->description = $description;
     
         return $this;
     }
 
     /**
-     * Get address
+     * Get description
      *
      * @return string 
      */
-    public function getAddress()
+    public function getDescription()
     {
-        return $this->address;
-    }
-
-    /**
-     * Set latitude
-     *
-     * @param float $latitude
-     * @return City
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-    
-        return $this;
-    }
-
-    /**
-     * Get latitude
-     *
-     * @return float 
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param float $longitude
-     * @return City
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-    
-        return $this;
-    }
-
-    /**
-     * Get longitude
-     *
-     * @return float 
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
+        return $this->description;
     }
 }

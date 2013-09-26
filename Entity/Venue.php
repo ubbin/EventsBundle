@@ -5,13 +5,19 @@ namespace Ubbin\EventsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * City
+ * Venue
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Ubbin\EventsBundle\Entity\CityRepository")
+ * @ORM\Entity(repositoryClass="Ubbin\EventsBundle\Entity\VenueRepository")
  */
-class City
+class Venue
 {
+	/**
+	 * @ORM\ManyToOne(targetEntity="City", inversedBy="venue")
+	 * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+	 */
+	protected $city;
+	
     /**
      * @var integer
      *
@@ -29,11 +35,40 @@ class City
     private $name;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="city_id", type="integer")
+     */
+    private $cityId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="text", nullable=true)
+     */
+    private $address;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="latitude", type="decimal", nullable=true)
+     */
+    private $latitude;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="longitude", type="decimal", nullable=true)
+     */
+    private $longitude;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=255, nullable=true)
      */
     private $slug;
+
 
     /**
      * Get id
@@ -49,7 +84,7 @@ class City
      * Set name
      *
      * @param string $name
-     * @return City
+     * @return Venue
      */
     public function setName($name)
     {
@@ -69,33 +104,33 @@ class City
     }
 
     /**
-     * Set slug
+     * Set cityId
      *
-     * @param string $slug
-     * @return City
+     * @param integer $cityId
+     * @return Venue
      */
-    public function setSlug($slug)
+    public function setCityId($cityId)
     {
-        $this->slug = $slug;
+        $this->cityId = $cityId;
     
         return $this;
     }
 
     /**
-     * Get slug
+     * Get cityId
      *
-     * @return string 
+     * @return integer 
      */
-    public function getSlug()
+    public function getCityId()
     {
-        return $this->slug;
+        return $this->cityId;
     }
 
     /**
      * Set address
      *
      * @param string $address
-     * @return City
+     * @return Venue
      */
     public function setAddress($address)
     {
@@ -118,7 +153,7 @@ class City
      * Set latitude
      *
      * @param float $latitude
-     * @return City
+     * @return Venue
      */
     public function setLatitude($latitude)
     {
@@ -141,7 +176,7 @@ class City
      * Set longitude
      *
      * @param float $longitude
-     * @return City
+     * @return Venue
      */
     public function setLongitude($longitude)
     {
@@ -158,5 +193,51 @@ class City
     public function getLongitude()
     {
         return $this->longitude;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Venue
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set city
+     *
+     * @param \Ubbin\EventsBundle\Entity\City $city
+     * @return Venue
+     */
+    public function setCity(\Ubbin\EventsBundle\Entity\City $city = null)
+    {
+        $this->city = $city;
+    
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \Ubbin\EventsBundle\Entity\City 
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }
