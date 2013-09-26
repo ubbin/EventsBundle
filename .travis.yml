@@ -1,9 +1,14 @@
 language: php
 
 php:
+  - 5.3.3
   - 5.3
   - 5.4
 
-before_script:
-    - curl -s http://getcomposer.org/installer | php
-    - php composer.phar install --dev
+before_script: composer install -n
+
+script: phpunit --coverage-text
+
+notifications:
+  email:
+    - trindade.pedro@ubbin.com
