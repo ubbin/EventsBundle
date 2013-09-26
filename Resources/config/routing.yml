@@ -1,3 +1,19 @@
-ubbin_events_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: UbbinEventsBundle:Default:index }
+ubbin_events_home:
+    pattern: /
+    defaults: { _controller: UbbinEventsBundle:Home:index }
+
+ubbin_events_city:
+    pattern: /city/{slug}
+    defaults: { _controller: UbbinEventsBundle:City:index }
+
+ubbin_events_venue:
+    pattern: /venue/{slug}
+    defaults: { _controller: UbbinEventsBundle:Venue:index }
+
+ubbin_events_event:
+    pattern: /event/{slug}
+    defaults: { _controller: UbbinEventsBundle:Event:index }
+
+ubbin_events_artist:
+    pattern: /artist/{slug}
+    defaults: { _controller: UbbinEventsBundle:Artist:index }
