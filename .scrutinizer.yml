@@ -33,9 +33,6 @@ tools:
             # Built-in standards: PEAR, PHPCS, PSR1, PSR2, Squiz, Zend
             standard:             PSR2
             sniffs:               []
-            severity:             ~
-            error_severity:       ~
-            warning_severity:     ~
             tab_width:            ~
             encoding:             ~
             config:    
