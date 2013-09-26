@@ -1,0 +1,3 @@
+ubbin_events_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: UbbinEventsBundle:Default:index }

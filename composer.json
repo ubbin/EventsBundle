@@ -1,0 +1,29 @@
+{
+    "name": "Ubbin/EventsBundle",
+    "type": "symfony-bundle",
+    "description": "Symfony UbbinEventsBundle",
+    "keywords": ["Event management"],
+    "homepage": "http://ubbin.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pedro Trindade",
+            "email": "trindade.pedro@ubbin.com"
+        },
+        {
+            "name": "Ubbin Labs",
+            "email": "ubbin@ubbin.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.2"
+    },
+    "require-dev": {
+        "symfony/framework-bundle": ">=2.3"
+    },
+    "autoload": {
+        "psr-0": { "Ubbin\\EventsBundle": "" }
+    },
+    "target-dir": "Ubbin/EventsBundle"
+}
