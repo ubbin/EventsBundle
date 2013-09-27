@@ -65,6 +65,7 @@ class Venue
     /**
      * @var string
      *
+     * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(name="slug", type="string", length=255, nullable=true)
      */
     private $slug;
