@@ -18,7 +18,7 @@ class EventShow
      */
     protected $event;
     /**
-     * @ORM\ManyToOne(targetEntity="Artist", inversedBy="event_show")
+     * @ORM\OneToOne(targetEntity="Artist", inversedBy="event_show")
      * @ORM\JoinColumn(name="artist_id", referencedColumnName="id")
      */
     protected $artist;

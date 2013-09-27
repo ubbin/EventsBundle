@@ -1,5 +1,5 @@
 {
-    "name": "Ubbin/EventsBundle",
+    "name": "ubbin/events-bundle",
     "type": "symfony-bundle",
     "description": "Symfony UbbinEventsBundle",
     "keywords": ["Event management"],
@@ -17,11 +17,11 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.3.2",
-        "stof/doctrine-extensions-bundle": "dev-master"
+        "php": ">=5.3.2"
     },
     "require-dev": {
-        "symfony/symfony": ">=2.3"
+        "symfony/symfony": "2.3.*",
+        "stof/doctrine-extensions-bundle": "dev-master"
     },
     "autoload": {
         "psr-0": { "Ubbin\\EventsBundle": "" }

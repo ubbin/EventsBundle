@@ -13,6 +13,12 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Event
 {
+	/**
+	 * 
+	 * @var array;
+	 */
+	private $event_shows;
+	
     /**
      * @ORM\ManyToOne(targetEntity="Venue", inversedBy="event")
      * @ORM\JoinColumn(name="venue_id", referencedColumnName="id")
@@ -212,4 +218,7 @@ class Event
     {
         return $this->venue;
     }
+    
+    
+    
 }

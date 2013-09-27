@@ -31,6 +31,19 @@ class EventProvider
     }
 
     /**
+     * Adds a new event for update/create
+     * 
+     */
+    public function addEvent($name, $description, $imageUrl, \Ubbin\EventsBundle\Entity\Venue $venue, \Ubbin\EventsBundle\Entity\EventShow $event_shows)
+    {
+    	$event = new Event();
+    	$event->setName($name);
+    	$event->setDescription($description);
+    	$event->setImageUrl($imageUrl);
+    	$event->setVenue($venue);
+    }   
+    
+    /**
      * Sets the Events to be processed
      * @param array $events
      */
