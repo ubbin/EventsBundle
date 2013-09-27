@@ -55,7 +55,7 @@ class Artist
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -71,14 +71,14 @@ class Artist
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -94,14 +94,14 @@ class Artist
     public function setImageUrl($imageUrl)
     {
         $this->imageUrl = $imageUrl;
-    
+
         return $this;
     }
 
     /**
      * Get imageUrl
      *
-     * @return string 
+     * @return string
      */
     public function getImageUrl()
     {
@@ -117,14 +117,14 @@ class Artist
     public function setSlug($slug)
     {
         $this->slug = $slug;
-    
+
         return $this;
     }
 
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -140,14 +140,14 @@ class Artist
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {

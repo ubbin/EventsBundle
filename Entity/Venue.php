@@ -12,12 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Venue
 {
-	/**
-	 * @ORM\ManyToOne(targetEntity="City", inversedBy="venue")
-	 * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
-	 */
-	protected $city;
-	
+    /**
+     * @ORM\ManyToOne(targetEntity="City", inversedBy="venue")
+     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     */
+    protected $city;
+
     /**
      * @var integer
      *
@@ -73,7 +73,7 @@ class Venue
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -89,14 +89,14 @@ class Venue
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -112,14 +112,14 @@ class Venue
     public function setCityId($cityId)
     {
         $this->cityId = $cityId;
-    
+
         return $this;
     }
 
     /**
      * Get cityId
      *
-     * @return integer 
+     * @return integer
      */
     public function getCityId()
     {
@@ -135,14 +135,14 @@ class Venue
     public function setAddress($address)
     {
         $this->address = $address;
-    
+
         return $this;
     }
 
     /**
      * Get address
      *
-     * @return string 
+     * @return string
      */
     public function getAddress()
     {
@@ -158,14 +158,14 @@ class Venue
     public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
-    
+
         return $this;
     }
 
     /**
      * Get latitude
      *
-     * @return float 
+     * @return float
      */
     public function getLatitude()
     {
@@ -181,14 +181,14 @@ class Venue
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
-    
+
         return $this;
     }
 
     /**
      * Get longitude
      *
-     * @return float 
+     * @return float
      */
     public function getLongitude()
     {
@@ -204,14 +204,14 @@ class Venue
     public function setSlug($slug)
     {
         $this->slug = $slug;
-    
+
         return $this;
     }
 
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -227,14 +227,14 @@ class Venue
     public function setCity(\Ubbin\EventsBundle\Entity\City $city = null)
     {
         $this->city = $city;
-    
+
         return $this;
     }
 
     /**
      * Get city
      *
-     * @return \Ubbin\EventsBundle\Entity\City 
+     * @return \Ubbin\EventsBundle\Entity\City
      */
     public function getCity()
     {

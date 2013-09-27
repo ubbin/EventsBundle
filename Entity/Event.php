@@ -13,12 +13,12 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Event
 {
-	/**
-	 * @ORM\ManyToOne(targetEntity="Venue", inversedBy="event")
-	 * @ORM\JoinColumn(name="venue_id", referencedColumnName="id")
-	 */
-	protected $venue;
-		
+    /**
+     * @ORM\ManyToOne(targetEntity="Venue", inversedBy="event")
+     * @ORM\JoinColumn(name="venue_id", referencedColumnName="id")
+     */
+    protected $venue;
+
     /**
      * @var integer
      *
@@ -68,7 +68,7 @@ class Event
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -84,14 +84,14 @@ class Event
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -107,14 +107,14 @@ class Event
     public function setSlug($slug)
     {
         $this->slug = $slug;
-    
+
         return $this;
     }
 
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -130,14 +130,14 @@ class Event
     public function setVenueId($venueId)
     {
         $this->venueId = $venueId;
-    
+
         return $this;
     }
 
     /**
      * Get venueId
      *
-     * @return integer 
+     * @return integer
      */
     public function getVenueId()
     {
@@ -153,14 +153,14 @@ class Event
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -176,14 +176,14 @@ class Event
     public function setImageUrl($imageUrl)
     {
         $this->imageUrl = $imageUrl;
-    
+
         return $this;
     }
 
     /**
      * Get imageUrl
      *
-     * @return string 
+     * @return string
      */
     public function getImageUrl()
     {
@@ -199,14 +199,14 @@ class Event
     public function setVenue(\Ubbin\EventsBundle\Entity\Venue $venue = null)
     {
         $this->venue = $venue;
-    
+
         return $this;
     }
 
     /**
      * Get venue
      *
-     * @return \Ubbin\EventsBundle\Entity\Venue 
+     * @return \Ubbin\EventsBundle\Entity\Venue
      */
     public function getVenue()
     {

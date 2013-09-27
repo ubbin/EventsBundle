@@ -12,17 +12,17 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class EventShow
 {
-	/**
-	 * @ORM\ManyToOne(targetEntity="Event", inversedBy="event_show")
-	 * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
-	 */
-	protected $event;
-	/**
-	 * @ORM\ManyToOne(targetEntity="Artist", inversedBy="event_show")
-	 * @ORM\JoinColumn(name="artist_id", referencedColumnName="id")
-	 */
-	protected $artist;
-			
+    /**
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="event_show")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
+     */
+    protected $event;
+    /**
+     * @ORM\ManyToOne(targetEntity="Artist", inversedBy="event_show")
+     * @ORM\JoinColumn(name="artist_id", referencedColumnName="id")
+     */
+    protected $artist;
+
     /**
      * @var integer
      *
@@ -73,11 +73,11 @@ class EventShow
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -93,14 +93,14 @@ class EventShow
     public function setEventId($eventId)
     {
         $this->eventId = $eventId;
-    
+
         return $this;
     }
 
     /**
      * Get eventId
      *
-     * @return integer 
+     * @return integer
      */
     public function getEventId()
     {
@@ -116,14 +116,14 @@ class EventShow
     public function setStartDate($startDate)
     {
         $this->startDate = $startDate;
-    
+
         return $this;
     }
 
     /**
      * Get startDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getStartDate()
     {
@@ -139,14 +139,14 @@ class EventShow
     public function setEndDate($endDate)
     {
         $this->endDate = $endDate;
-    
+
         return $this;
     }
 
     /**
      * Get endDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getEndDate()
     {
@@ -162,14 +162,14 @@ class EventShow
     public function setArtistId($artistId)
     {
         $this->artistId = $artistId;
-    
+
         return $this;
     }
 
     /**
      * Get artistId
      *
-     * @return integer 
+     * @return integer
      */
     public function getArtistId()
     {
@@ -185,14 +185,14 @@ class EventShow
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -208,14 +208,14 @@ class EventShow
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -231,14 +231,14 @@ class EventShow
     public function setEvent(\Ubbin\EventsBundle\Entity\Event $event = null)
     {
         $this->event = $event;
-    
+
         return $this;
     }
 
     /**
      * Get event
      *
-     * @return \Ubbin\EventsBundle\Entity\Event 
+     * @return \Ubbin\EventsBundle\Entity\Event
      */
     public function getEvent()
     {
@@ -254,14 +254,14 @@ class EventShow
     public function setArtist(\Ubbin\EventsBundle\Entity\Artist $artist = null)
     {
         $this->artist = $artist;
-    
+
         return $this;
     }
 
     /**
      * Get artist
      *
-     * @return \Ubbin\EventsBundle\Entity\Artist 
+     * @return \Ubbin\EventsBundle\Entity\Artist
      */
     public function getArtist()
     {
