@@ -13,9 +13,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Event
 {
+		
 	/**
 	 * 
 	 * @var array;
+	 * @ORM\OneToMany(targetEntity="EventShow", mappedBy="event")
 	 */
 	private $event_shows;
 	
@@ -219,6 +221,57 @@ class Event
         return $this->venue;
     }
     
+    /**
+     * Set the Event Shows
+     * @param array $event_shows
+     * @return \Ubbin\EventsBundle\Entity\Event
+     */
+    public function setEventShows(array $event_shows)
+    {
+    	$this->event_shows = $event_shows;
+    
+    	return $this;
+    }
     
     
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->event_shows = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add event_shows
+     *
+     * @param \Ubbin\EventsBundle\Entity\EventShow $eventShows
+     * @return Event
+     */
+    public function addEventShow(\Ubbin\EventsBundle\Entity\EventShow $eventShows)
+    {
+        $this->event_shows[] = $eventShows;
+    
+        return $this;
+    }
+
+    /**
+     * Remove event_shows
+     *
+     * @param \Ubbin\EventsBundle\Entity\EventShow $eventShows
+     */
+    public function removeEventShow(\Ubbin\EventsBundle\Entity\EventShow $eventShows)
+    {
+        $this->event_shows->removeElement($eventShows);
+    }
+
+    /**
+     * Get event_shows
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEventShows()
+    {
+        return $this->event_shows;
+    }
 }

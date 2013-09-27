@@ -30,10 +30,15 @@ class EventProvider
         $this->event_repository = $event_repository;
     }
 
-    /**
-     * Adds a new event for update/create
-     * 
-     */
+	/**
+	 * Adds a new event for update/create
+	 * @param string $name
+	 * @param string $description
+	 * @param string $imageUrl
+	 * @param \Ubbin\EventsBundle\Entity\Venue $venue
+	 * @param \Ubbin\EventsBundle\Entity\EventShow $event_shows
+	 * @return \Ubbin\EventsBundle\Entity\Event
+	 */
     public function addEvent($name, $description, $imageUrl, \Ubbin\EventsBundle\Entity\Venue $venue, \Ubbin\EventsBundle\Entity\EventShow $event_shows)
     {
     	$event = new Event();
@@ -41,15 +46,20 @@ class EventProvider
     	$event->setDescription($description);
     	$event->setImageUrl($imageUrl);
     	$event->setVenue($venue);
+    	$event->setEventShows($event_shows);
+    	$this->events[] = $event;
+    	return $event;
     }   
     
-    /**
-     * Sets the Events to be processed
-     * @param array $events
-     */
+	/**
+	 *Sets the Events to be processed
+	 * @param array $events
+	 * @return \Ubbin\EventsBundle\EventProvider\EventProvider
+	 */
     public function setEvents(array $events)
     {
         $this->events = $events;
+        return $this;
     }
 
     /**
@@ -69,6 +79,7 @@ class EventProvider
         foreach ($this->events as $event) {
             $this->createOrUpdateEvent($event);
         }
+        return $this;
     }
 
     /**

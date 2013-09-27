@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Venue
 {
     /**
-     * @ORM\OneToOne(targetEntity="City", inversedBy="venue")
+     * @ORM\ManyToOne(targetEntity="City", inversedBy="venue")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      */
     protected $city;
