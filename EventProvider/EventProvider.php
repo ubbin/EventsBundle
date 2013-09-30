@@ -21,17 +21,17 @@ class EventProvider
 
     /**
      *
-     * @var \Ubbin\EventsBundle\Entity\EventRepository
+     * @var \Doctrine\Bundle\DoctrineBundle\Registry
      */
-    protected $event_repository;
+    protected $doctrine;
 
     /**
      *
-     * @param \Ubbin\EventsBundle\Entity\EventRepository $event_repository
+     * @param \Doctrine\ORM\EntityManager $doctrine
      */
-    public function __construct(\Ubbin\EventsBundle\Entity\EventRepository $event_repository)
+    public function __construct(\Doctrine\Bundle\DoctrineBundle\Registry $doctrine)
     {
-        $this->event_repository = $event_repository;
+    	$this->doctrine = $doctrine;
     }
 
 	/**
@@ -65,7 +65,7 @@ class EventProvider
     public function createVenue($name, $address, $city_name)
     {
 		$city = new City();
-		$city->setName($name);
+		$city->setName($city_name);
 		
 		$venue = new Venue();
 		$venue->setName($name);
@@ -135,8 +135,97 @@ class EventProvider
      * @param \Ubbin\EventsBundle\Entity\Event $event
      * @return \Ubbin\EventsBundle\Entity\Event
      */
-    private function createOrUpdateEvent(\Ubbin\EventsBundle\Entity\Event $event)
+    private function createOrUpdateEvent(\Ubbin\EventsBundle\Entity\Event $temp_event)
     {
+    	$event_shows = $temp_event->getEventShows();
+    	if(count($event_shows)==0)
+    	{
+    		throw new \Exception("Event without event shows");
+    	}
+    	$temp_event->setVenue($this->createOrRetrieveVenue($temp_event->getVenue()));
+    	$event = $this->doctrine->getRepository('UbbinEventsBundle:Event')->findByVenueNameAndDate($temp_event->getVenue(), $temp_event->getName(), $event_shows[0]->getStartDate());
+    	if(!$event)
+    	{
+    		$event = $temp_event;
+    		
+    		$event_shows = $event->getEventShows();
+    		$event->setEventShows(array());
+    		$em = $this->doctrine->getManager();
+    		$em->persist($event);
+    		$em->flush();
+    		
+    		foreach ($event_shows as $event_show)
+    		{
+    			$event_show->setEvent($event);
+    			$event->addEventShow($this->createOrRetrieveEventShow($event_show));
+    		}
+    	}
         return $event;
+    }
+    
+    
+    private function createOrRetrieveVenue(\Ubbin\EventsBundle\Entity\Venue $temp_venue)
+    {
+    	$city = $this->createOrRetrieveCity($temp_venue->getCity());
+    	$venue = $this->doctrine->getRepository('UbbinEventsBundle:Venue')->findOneBy(array('name'=>$temp_venue->getName(), 'cityId'=>$city->getId()));
+    	if(!$venue)
+    	{
+    		$venue = $temp_venue;
+    		$venue->setCity($city);
+    		$em = $this->doctrine->getManager();
+    		$em->persist($venue);
+    		$em->flush();
+    	}
+    	return $venue;
+    }
+    
+	/**
+	 * 
+	 * @param \Ubbin\EventsBundle\Entity\City $temp_city
+	 * @return \Ubbin\EventsBundle\Entity\City
+	 */
+    private function createOrRetrieveCity(\Ubbin\EventsBundle\Entity\City $temp_city)
+    {
+    	$city = $this->doctrine->getRepository('UbbinEventsBundle:City')->findOneBy(array('name'=>$temp_city->getName()));
+    	if(!$city)
+    	{
+    		$city = $temp_city;
+    		$em = $this->doctrine->getManager();
+    		$em->persist($city);
+    		$em->flush();
+    	}
+    	return $city;
+    }
+    
+	/**
+	 * 
+	 * @param \Ubbin\EventsBundle\Entity\Artist $temp_artist
+	 * @return \Ubbin\EventsBundle\Entity\Artist
+	 */
+    private function createOrRetrieveArtist(\Ubbin\EventsBundle\Entity\Artist $temp_artist)
+    {
+    	$artist = $this->doctrine->getRepository('UbbinEventsBundle:Artist')->findOneBy(array('name'=>$temp_artist->getName()));
+    	if(!$artist)
+    	{
+    		$artist = $temp_artist;
+    		$em = $this->doctrine->getManager();
+    		$em->persist($artist);
+    		$em->flush();
+    	}
+    	return $artist;
+    }
+    
+	/**
+	 * 
+	 * @param \Ubbin\EventsBundle\Entity\EventShow $temp_event_show
+	 * @return \Ubbin\EventsBundle\Entity\EventShow
+	 */
+    private function createOrRetrieveEventShow(\Ubbin\EventsBundle\Entity\EventShow $temp_event_show)
+    {
+    	$temp_event_show->setArtist($this->createOrRetrieveArtist($temp_event_show->getArtist()));
+    	$em = $this->doctrine->getManager();
+    	$em->persist($temp_event_show);
+    	$em->flush();
+    	return $temp_event_show;
     }
 }

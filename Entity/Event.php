@@ -46,8 +46,8 @@ class Event
     /**
      * @var string
      *
-     * @Gedmo\Slug(fields={"name"})
-     * @ORM\Column(name="slug", type="string", length=255)
+     * @Gedmo\Slug(fields={"name"}, updatable=false, separator="_", unique=true)
+     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
      */
     private $slug;
 
@@ -274,4 +274,5 @@ class Event
     {
         return $this->event_shows;
     }
+    
 }

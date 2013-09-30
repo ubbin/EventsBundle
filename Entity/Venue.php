@@ -3,6 +3,7 @@
 namespace Ubbin\EventsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Venue
@@ -65,7 +66,7 @@ class Venue
     /**
      * @var string
      *
-     * @Gedmo\Slug(fields={"name"})
+     * @Gedmo\Slug(fields={"name"}, updatable=false, separator="_", unique=true)
      * @ORM\Column(name="slug", type="string", length=255, nullable=true)
      */
     private $slug;

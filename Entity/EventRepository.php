@@ -12,4 +12,35 @@ use Doctrine\ORM\EntityRepository;
  */
 class EventRepository extends EntityRepository
 {
+	
+	/**
+	 * 
+	 * @param \Ubbin\EventsBundle\Entity\Venue $venue
+	 * @param string $name
+	 * @param  $startDate
+	 * @return \Ubbin\EventsBundle\Entity\Event
+	 */
+	public function findByVenueNameAndDate(\Ubbin\EventsBundle\Entity\Venue $venue, $name, $startDate)
+	{
+		if($venue->getId())
+		{
+			echo "venId: ".$venue->getId()."\n";
+			echo "name: ".$name."\n";
+			$query = $this->createQueryBuilder('e')
+			->innerJoin('Ubbin\EventsBundle\Entity\EventShow', 'es')
+			->where('e.venueId = :venue_id')
+			->andWhere('e.name = :name')
+			->andWhere('es.startDate = :start_date')
+			->setParameter('name', $name)
+			->setParameter('start_date', $startDate)
+			->setParameter('venue_id', $venue->getId())
+			->getQuery();
+			$result = $query->getResult();
+			if(isset($result[0]))
+			{
+				return $result[0];
+			}
+		}
+		return null;
+	}
 }
